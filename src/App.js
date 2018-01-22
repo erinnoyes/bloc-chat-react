@@ -6,6 +6,7 @@ import MessageList from './components/MessageList';
 
 
 
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyD4XmkCsjAkKR8EAtxI1qACTBh1jqT1JrI",
@@ -33,7 +34,7 @@ import MessageList from './components/MessageList';
     return (
       <div className="App">
         <header className="App-header">
-          <h1 classNmae="App-title">Bloc Chat</h1>
+          <h1 className="App-title">Bloc Chat</h1>
         </header>
 
 
