@@ -21,6 +21,12 @@ class RoomList extends Component {
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) });
     });
+
+    this.roomsRef.on('child_removed', snapshot => {
+      const deleteRoom = snapshot.val();
+      deleteRoom.key = snapshot.key;
+      return alert(deleteRoom.name+" was deleted.");
+    });
   }
 
   createRoom = (e) => {
@@ -28,6 +34,13 @@ class RoomList extends Component {
     if (!this.state.newRoomName) { return}
     this.roomsRef.push({name: this.state.newRoomName});
     this.setState({ newRoomName: '' });
+  }
+
+  deleteRoom(room) {
+    if(!this.props.activeRoom) {return}
+    this.roomsRef.child(room.key).remove();
+    this.setState({rooms: this.state.rooms.filter( (oldroom) =>
+    {return oldroom.key !== room.key }) });
   }
 
   chooseRoom(room){
@@ -46,7 +59,11 @@ class RoomList extends Component {
 
         <form onSubmit= {this.createRoom}>
           <input type="text" value= {this.state.newRoomName} onChange={this.handleChange}/>
-          <input type="submit"/>
+          <input type="submit" value="Add New Room"/>
+        </form>
+
+        <form onSubmit={this.deleteRoom.bind(this, this.props.activeRoom)}>
+        <input type="submit" value="Delete Current Room" />
         </form>
       </section>
     );

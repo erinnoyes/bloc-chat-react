@@ -38,15 +38,17 @@ firebase.initializeApp(config);
       return (
         <div className="App">
 
-        <h1>{this.state.activeRoom.name || 'Select a Room'}</h1>
+        <h2>{this.state.activeRoom.name || 'Select a Room'}</h2>
         <RoomList
           firebase={firebase}
           chooseActiveRoomCallback={this.chooseActiveRoomCallback}
+          activeRoom={this.state.activeRoom}
         />
         {this.state.activeRoom.key ?
         <MessageList
           firebase={firebase}
           activeRoom= {this.state.activeRoom}
+          currentUser={this.state.user}
         />
         : null
         }
