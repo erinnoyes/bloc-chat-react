@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 class RoomList extends Component {
@@ -5,13 +6,13 @@ class RoomList extends Component {
    super(props);
    this.state = {
      rooms: [],
-     newRoom: ''
+     newRoomName: ''
    };
    this.roomsRef = this.props.firebase.database().ref('rooms');
   }
 
   handleChange = (e) => {
-      this.setState({ newRoom: e.target.value })
+      this.setState({ newRoomName: e.target.value })
     }
 
   componentDidMount() {
@@ -24,13 +25,13 @@ class RoomList extends Component {
 
   createRoom = (e) => {
     e.preventDefault();
-    if (!this.state.newRoom) { return}
-    this.roomsRef.push({name: this.state.newRoom});
-    this.setState({ newRoom: '' });
+    if (!this.state.newRoomName) { return}
+    this.roomsRef.push({name: this.state.newRoomName});
+    this.setState({ newRoomName: '' });
   }
 
   chooseRoom(room){
-    this.props.selectActiveRoom(room);
+    this.props.chooseActiveRoomCallback(room);
   }
 
   render () {

@@ -24,11 +24,7 @@ class MessageList extends Component {
       sentAt: this.state.sentAt,
       roomId: this.state.roomId
     });
-    this.setState({
-      username: "",
-      content: "",
-      sentAt: "",
-      roomId: ""})
+    this.setState({username: "", content: "", sentAt: "", roomId: ""})
   }
 
   componentDidMount() {
